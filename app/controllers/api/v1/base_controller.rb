@@ -1,6 +1,7 @@
 class Api::V1::BaseController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include Api::ExceptionHandler
+  include FirebaseAuth
 
   befer_action :authenticate_token
 
