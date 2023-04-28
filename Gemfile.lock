@@ -70,12 +70,17 @@ GEM
     date (3.3.3)
     dockerfile-rails (1.2.5)
       rails
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    jwt (2.7.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -177,6 +182,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   dockerfile-rails (>= 1.2)
+  dotenv-rails
+  jwt
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
