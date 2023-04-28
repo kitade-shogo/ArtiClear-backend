@@ -14,7 +14,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
-
+# 環境変数を読み込む
 require 'dotenv/load'
 
 # Require the gems listed in Gemfile, including any gems
