@@ -84,3 +84,4 @@ production:
   database: articlear_production
   username: articlear
   password: <%= ENV['ARTICLEAR_DATABASE_PASSWORD'] %>
+  host: <%= ENV['ARTICLEAR_DATABASE_HOST'] %>
