@@ -2,7 +2,7 @@ class Api::V1::FoldersController < Api::V1::BaseController
     before_action :set_folder, only: %i[destroy]
 
     def index
-        folders = current_user.folders.order("created_at DESC")
+        folders = current_user.folders.order(created_at: :desc)
         json_string = FolderSerializer.new(folders).serializable_hash.to_json
         render json: json_string
     end
