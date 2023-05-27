@@ -9,7 +9,6 @@ class Api::V1::BaseController < ApplicationController
     authenticate_with_http_token do |token, _options|
 
       result = verify_id_token(token)
-      Rails.logger.info "token検証実行結果: #{result}"
       
       if result[:errors]
         render_400(nil, result[:errors])
