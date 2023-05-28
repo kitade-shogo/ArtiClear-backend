@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "/auth", to: "authentications#create"
       resources :folders, only: %i[index create destroy]
+      resources :bookmarks, only: %i[index create destroy]
     end
   end
 end
