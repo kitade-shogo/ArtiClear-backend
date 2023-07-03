@@ -105,10 +105,9 @@ module FirebaseAuth
   def get_public_key(header)
     certificate = find_certificate(header["kid"])
     public_key = OpenSSL::X509::Certificate.new(certificate).public_key
+    return public_key
   rescue OpenSSL::X509::CertificateError => e
     raise "Invalid certificate. #{e.message}"
-
-    return public_key
   end
 
   # https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com
@@ -121,7 +120,7 @@ module FirebaseAuth
   #     "key_2": "CERTIFICATE_2"
   #   }
   def find_certificate(kid)
-    certificates = fetch_certificates 
+    certificates = fetch_certificates
     unless certificates.keys.include?(kid)
       raise "Invalid 'kid', do not correspond to one of valid public keys."
     end
