@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'mechanize'
+
 class Api::V1::BookmarksController < Api::V1::BaseController
     before_action :set_bookmark, only: %i[destroy]
 
@@ -9,6 +12,7 @@ class Api::V1::BookmarksController < Api::V1::BaseController
 
     def create
         bookmark = current_user.bookmarks.build(bookmark_params)
+        bookmark.description = fetch_og_description(bookmark.url)
         if bookmark.save
             json_string = BookmarkSerializer.new(bookmark).serializable_hash.to_json
             render json: json_string
@@ -34,4 +38,17 @@ class Api::V1::BookmarksController < Api::V1::BaseController
     def bookmark_params
         params.require(:bookmark).permit(:url, :title, :description, :folder_id)
     end
+
+    def fetch_og_description(url)
+        begin
+            agent = Mechanize.new
+            page = agent.get(url)
+            og_description = page.at('meta[property="og:description"]')&.attributes&.[]("content")&.value
+            og_description unless og_description.blank?
+        rescue => e
+            Rails.logger.info "#{e}"
+            nil
+        end
+    end
+
 end

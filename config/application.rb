@@ -15,7 +15,7 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 # 環境変数を読み込む
-require 'dotenv/load'
+require 'dotenv/load' if ['development', 'test'].include? ENV['RAILS_ENV']
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -38,5 +38,6 @@ module Articlear
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.time_zone = 'Asia/Tokyo'
   end
 end
