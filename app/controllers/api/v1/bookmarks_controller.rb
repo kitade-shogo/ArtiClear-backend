@@ -44,6 +44,9 @@ class Api::V1::BookmarksController < Api::V1::BaseController
       agent = Mechanize.new
       page = agent.get(url)
       og_description = page.at('meta[property="og:description"]')&.attributes&.[]("content")&.value
+      if og_description && og_description.length > 255
+        og_description = og_description[0..251] + '...' # 252文字を切り取り、'...'を追加
+      end
       og_description unless og_description.blank?
     rescue => e
       Rails.logger.info "#{e}"
