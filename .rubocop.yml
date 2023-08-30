@@ -1,0 +1,50 @@
+AllCops:
+  Exclude:
+    - '**/*.gemspec'
+    - '**/*.podspec'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/config.ru'
+    - '**/spec/**/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+
+# Disable all style cops.
+Style:
+  Enabled: false
+
+# Enable cops that we care about
+Layout/IndentationConsistency:
+  Enabled: true
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/IndentationWidth:
+  Enabled: true
+  Width: 2
+
+Layout/EndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: start_of_line
+
+Layout/RescueEnsureAlignment:
+  Enabled: true
+  EnforcedStyle: start_of_line
+
+Layout/ArgumentAlignment:
+  Enabled: true
+  EnforcedStyle: with_first_argument
+
+Naming/VariableNumber:
+  Enabled: false
+
+
+# Metrics:
+#   Enabled: false

@@ -1,4 +1,4 @@
-class FolderSerializer 
+class FolderSerializer
   include JSONAPI::Serializer
   attributes :name
 

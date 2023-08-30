@@ -7,9 +7,13 @@ class Api::V1::BaseController < ApplicationController
 
   def authenticate_token
     authenticate_with_http_token do |token, _options|
+      begin
+        result = verify_id_token(token)
+      rescue => e
+        logger.error "Failed to verify token: #{e.message}"
+        return
+      end
 
-      result = verify_id_token(token)
-      
       if result[:errors]
         render_400(nil, result[:errors])
       else
@@ -21,5 +25,4 @@ class Api::V1::BaseController < ApplicationController
   def current_user
     @current_user
   end
-
 end
